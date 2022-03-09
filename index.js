@@ -1,25 +1,21 @@
 let balance = 500.00;
 
-class Withdrawal {
-
-  constructor(amount, account) {
+class Transaction {
+  constructor(amount, account){
     this.amount = amount;
     this.account = account;
   }
-
-  commit() {
-    this.account.balance -= this.amount;
-  }
-
 }
 
-class Deposit {
-  constructor (amount, account){
-    this.amount = amount;
-    this.account = account;
-  }
+class Withdrawal extends Transaction{
   commit(){
-    this.account.balance += this.amount;
+    this.account.balance -= balance;
+  }
+}
+
+class Deposit extends Transaction{
+  commit(){
+    this.account.balance += balance;
   }
 }
 
@@ -38,7 +34,7 @@ class Account {
 const myAccount = new Account("snow-patrol");
 
 // WITHDRAWL
-t1 = new Withdrawal(50.25);
+t1 = new Withdrawal(50.25, myAccount);
 t1.commit();
 console.log('Transaction 1:', t1);
 
